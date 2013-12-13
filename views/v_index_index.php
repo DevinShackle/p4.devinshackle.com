@@ -1,11 +1,14 @@
-<p>
-	Hello World! You have successfully spawned a new application. WOOT!
-</p>
+<div class="row">
+	<div class="hero-unit">
+		<img src="../img/logo.png">
+		<h3>Welcome to Pass It On, a tool for helping large organizations disseminate information efficiently</h3>
+	</div>
+</div>
+<div class="row">
+	<div class="span10 offset1">
+		<p>Using <strong>Pass It On</strong>, producers of news and operational highlights within your organization 
+			can author a single document that will automatically feed multiple forms of dissemination</p>
+		<p>Choose Sign Up or Login from the links above to get started</p>
+	</div>
+</div>
 
-<p>
-	This message is being triggered via the c_index.php controller, within the index() method.
-</p>
-
-<p>
-	<strong>Since everything is in working order, you should now delete <?php echo APP_PATH?>diagnostics.php</strong>
-</p>

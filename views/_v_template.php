@@ -21,19 +21,10 @@
 
 <body>	
 
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<span class="navbar-brand"><?=APP_NAME?></span>
-		</div>
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-			<ul class="nav navbar-nav">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<span class="brand"><?=APP_NAME?></span>
+			<ul class="nav">
 				<li><a href="/">Home</a></li>
 
 			<?php if($user): ?>
@@ -49,8 +40,11 @@
 			<?php endif; ?>
 
 			</ul>
-			
-			<ul class="nav navbar-nav navbar-right">
+
+			<!-- we use a second list element here so that the logout button 
+				 stands away from other buttons and will be less likely
+				 to be pressed accidentally -->
+			<ul class="nav loginOut">
 			<?php if($user): ?>
 				<li><a href='/users/logout'>Logout</a></li>
 			<?php else: ?>
@@ -59,7 +53,7 @@
 			<?php endif; ?>
 			</ul>
 		</div>
-	</nav>
+	</div>
 
 	<?php if(isset($content)) echo $content; ?>
 
