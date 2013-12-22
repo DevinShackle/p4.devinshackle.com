@@ -53,6 +53,7 @@ class users_controller extends base_controller {
 		$this->template->content = View::instance('v_users_login');
 
 		# Pass data to the view
+		$this->template->title   = "Login";
 		$this->template->content->error = $error;
 
 		# Render template
@@ -131,34 +132,25 @@ class users_controller extends base_controller {
 
 		# If they weren't redirected away, continue:
 
-		# Find the number of posts the user has made
-		$q = "SELECT post_id
-			FROM posts
+		# Find the number of news articles the user has authored
+		$q = "SELECT news_id
+			FROM news
+			WHERE author_id = ".$this->user->user_id;
+
+		$numArticles = DB::instance(DB_NAME)->select_rows($q);
+
+		#get the user role
+		$q = "SELECT user_type
+			FROM users
 			WHERE user_id = ".$this->user->user_id;
 
-		$numPosts = DB::instance(DB_NAME)->select_rows($q);
-
-		#Find the number of users the user is following
-		$q = "SELECT user_id_followed
-			FROM users_users
-			WHERE user_id = ".$this->user->user_id;
-
-		$numFollowed = DB::instance(DB_NAME)->select_rows($q);
-
-		#Find the number of other users following the user
-		$q = "SELECT user_id
-			FROM users_users
-			WHERE user_id_followed = ".$this->user->user_id;
-
-		$numFollowing = DB::instance(DB_NAME)->select_rows($q);
-
+		$user_role = DB::instance(DB_NAME)->select_rows($q);
 
 		# Setup view
 		$this->template->content = View::instance('v_users_profile');
 		$this->template->title   = "Profile of ".$this->user->first_name;
-		$this->user->numPosts = sizeof($numPosts);
-		$this->user->numFollowed = sizeof($numFollowed);
-		$this->user->numFollowing = sizeof($numFollowing);
+		$this->user->numArticles = sizeof($numArticles);
+		$this->user->type = $user_role[0][user_type];
 
 
 		# Render template

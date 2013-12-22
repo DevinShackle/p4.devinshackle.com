@@ -7,3 +7,24 @@
 .loginOut {
 	float:right !important;
 }
+
+
+.news {
+	width:90%
+}
+
+#exec_summary {
+	height: 150px;
+}
+
+#body {
+	height:300px;
+}
+
+div.exec_summary {
+	margin-bottom: 25px;
+}
+
+div.body {
+	margin-bottom: 10px;
+}
